@@ -10,18 +10,35 @@ class PokemonList extends Component
         super();
         this.state =
         {
-            pokemons : [],
-            lista : ""
+            pokemons : []
         };
         this.getList = this.getList.bind(this);
         //this.handleSubmit = this.handleSubmit.bind(this);
     }
     render(){
         this.getList({});
+        const list = this.state.pokemons.map((pokemon,index)=>
+            {
+                return(
+                    <div className="col-md-4" key={index}>
+                            <div className="card mt-4">
+                                <div className="card-header">
+                                    <h3>{pokemon.name}</h3>
+                                    <span className="badge badge-pill badge-danger ml-2">.
+                                    </span>
+                                </div>
+                                <div className="card-body">
+                                    <img src={pokemon.url} img/>
+                                    {pokemon.url}
+                                </div>
+                            </div>
+                        </div>
+                        ); 
+            });
         return (
         <div className=" card">
-            {pokemons}
-            {console.log(pokemons)}
+            {list}
+            {console.log(list)}
             <strong>PokemonList</strong>
         </div>
         )
@@ -30,24 +47,7 @@ class PokemonList extends Component
     {
         conn.getPokemons()
         .then((res)=>{
-            this.setState({pokemons:... res});
-            this.setState()= this.state.pokemons.map((pokemon,index)=>
-        {
-            return(
-                <div className="col-md-4" key={index}>
-                        <div className="card mt-4">
-                            <div className="card-header">
-                                <h3>{pokemon.name}</h3>
-                                <span className="badge badge-pill badge-danger ml-2">.
-                                </span>
-                            </div>
-                            <div className="card-body">
-                                <strong>{pokemon.url}</strong>
-                            </div>
-                        </div>
-                    </div>
-                    ); 
-        });
+            this.setState({pokemons:[... res]});
         });
     }
 }
