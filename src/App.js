@@ -20,8 +20,8 @@ class App extends Component {
   {
     return (
       <div className="App container-fluid">
-          {/* <nav>
-            <div className="nav-wrapper blue">
+           <nav>
+            <div className="nav-wrapper blue fixed">
               <div className="container">
                 <a href="#" className="brand-logo">Pokedex</a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -31,7 +31,7 @@ class App extends Component {
                 </ul>
               </div>
             </div>
-          </nav> */}
+          </nav> 
           <PokemonList/> 
       </div>
     );
