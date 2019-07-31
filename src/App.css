@@ -1,3 +1,40 @@
+.brand-logo::before
+{
+  content:'';
+  position: relative;
+  bottom:-7px; 
+  display: inline-block;
+  background: url('pokeballs-small.png') no-repeat -111px -2px;
+	width: 35px;
+  height: 35px;
+  margin-right:10px; 
+  animation: Change-pokeball infinite step-end 4s;
+  transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  
+}
+@keyframes Change-pokeball {
+  0%{
+    background: url('pokeballs-small.png') no-repeat -111px -2px;
+  }
+  10%{
+    transform: rotate(-20deg);
+  }
+  20%{
+    transform: rotate(20deg);
+  }
+  25%{
+    background: url('pokeballs-small.png') no-repeat -38px -76px;
+    transform: rotate(0deg);
+  }
+  50%
+  {
+    background: url('pokeballs-small.png') no-repeat -77px -112px;
+  }
+  70%
+  {
+    background: url('pokeballs-small.png') no-repeat -1px -2px;
+  }
+}
 
 @keyframes App-logo-spin {
   from {
