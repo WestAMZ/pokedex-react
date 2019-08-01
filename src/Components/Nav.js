@@ -9,7 +9,7 @@ class Nav extends React.Component
     {
         return(
             <nav>
-            <div className="nav-wrapper blue fixed">
+            <div className="nav-wrapper #00b8d4 cyan accent-4">
               <div className="container">
                 <a href="#" className="brand-logo">Pokedex</a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">

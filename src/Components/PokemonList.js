@@ -21,7 +21,7 @@ class PokemonList extends Component
         const list = this.state.pokemons.map((pokemon,index)=>
             {
                 return(
-                    <div className="col s6 m4 l3">
+                    <div className="col s6 m4 l3" key={index+1}>
                         <div className="card ">
 
                             <div className="card-image waves-effect waves-block waves-light">

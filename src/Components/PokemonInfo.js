@@ -5,11 +5,11 @@ const conn =  require('../Repository/Connection');
 
 class PokemonInfo extends Component
 {
-    constructor()
+    constructor(props)
     {
-        super(); 
+        super(props); 
         this.state = {
-            name:'',
+            name:props.name,
             info:{
 
             }
@@ -17,9 +17,10 @@ class PokemonInfo extends Component
     }
     render()
     {
+        this.getInfo();
         return(
             <div className="info">
-                <img className="activator" src={"https://pokeres.bastionbot.org/images/pokemon/" + (this.info.number) + ".png"} img />
+                <img className="activator" src={"https://pokeres.bastionbot.org/images/pokemon/" + (this.state.info.number) + ".png"} img />
             </div>
         );
     }
@@ -29,6 +30,7 @@ class PokemonInfo extends Component
         .then((res)=>{
             this.setState((state)=>{
                 state.info = res;
+                console.log(res);
             });
         });
     }
