@@ -3,3 +3,10 @@ img
     height: 200px;
     width: 200px;
 }
+.pokemon:hover
+{
+    transform: scale(1.1);
+    -webkit-box-shadow: 10px 10px 15px 0px rgba(214,214,214,1);
+    -moz-box-shadow: 10px 10px 15px 0px rgba(214,214,214,1);
+    box-shadow: 10px 10px 15px 0px rgba(214,214,214,1);
+}

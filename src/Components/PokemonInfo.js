@@ -30,7 +30,7 @@ class PokemonInfo extends Component
         .then((res)=>{
             this.setState((state)=>{
                 state.info = res;
-                console.log(res);
+                console.log(this.state);
             });
         });
     }

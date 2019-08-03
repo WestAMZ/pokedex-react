@@ -1,6 +1,6 @@
 const axios = require('axios');
 const base_URL = "https://pokeapi.co/api/v2/";
-const base_URL2 = "https://pokeapi.bastionbot.org/v1/pokemon/"
+
 
 module.exports =
 {
@@ -20,7 +20,7 @@ module.exports =
 
     getPokemonInfo: async function (name) 
     {
-        return await axios.get(base_URL2+'/'+name)
+        return await axios.get(base_URL+'pokemon/'+name)
         .then(function(response){
             console.log(response);
            return response.data.results;

@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './PokemonList.css';
+import { Link } from 'react-dom';
 //Api
 const conn =  require('../Repository/Connection');
 
@@ -11,6 +12,7 @@ class PokemonList extends Component
         this.offset=0;
         this.limit=20;
         this.getList = this.getList.bind(this);
+        this.loadDescription = this.loadDescription.bind(this);
         this.state =
         {
             pokemons : []
@@ -21,19 +23,19 @@ class PokemonList extends Component
         const list = this.state.pokemons.map((pokemon,index)=>
             {
                 return(
-                    <div className="col s6 m4 l3" key={index+1}>
+                    <div className="col s6 m4 l3 pokemon" key={index+1}>
                         <div className="card ">
 
-                            <div className="card-image waves-effect waves-block waves-light">
+                            <div className="card-image waves-effect waves-block waves-light" onClick={this.loadDescription(this,index)}>
                                 <img className="activator" src={"https://pokeres.bastionbot.org/images/pokemon/" + (index+1 ) + ".png"} img />
                             </div>
                             <div className="card-content">
                                 <span className="card-title activator grey-text text-darken-4">{pokemon.name}<i className="material-icons right">more_vert</i></span>
-                                <p><a href="#">See more</a></p>
+                                <p><a href={"/info/"+(pokemon.name)}>See more</a></p>
                             </div>
                             <div className="card-reveal">
                                 <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
-                                <p>Description</p>
+                                <p>{(pokemon.description)?pokemon.description:Description}</p>
                             </div>
 
                         </div>
@@ -41,7 +43,7 @@ class PokemonList extends Component
                         ); 
             });
         return (
-        <div className="container">
+        <div className="pokemonlist container">
             <div className="row">
             {list}
             </div>
@@ -62,6 +64,17 @@ class PokemonList extends Component
             }
             this.offset += 20;
         });   
+    }
+    loadDescription(index)
+    {
+        let desc = conn.getPokemonInfo(this.state.pokemons[index].name);
+        if(desc)
+        {
+            this.setState((state)=>
+            {
+                state.pokemon[index].description = desc;
+            });
+        }
     }
     
 }
