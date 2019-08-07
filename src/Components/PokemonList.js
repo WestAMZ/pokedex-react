@@ -6,11 +6,11 @@ const conn =  require('../Repository/Connection');
 
 class PokemonList extends Component
 {
-    constructor()
+    constructor(props)
     {
-        super();
+        super(props);
         this.offset=0;
-        this.limit=20;
+        this.limit=300;
         this.getList = this.getList.bind(this);
         this.loadDescription = this.loadDescription.bind(this);
         this.state =
@@ -18,7 +18,6 @@ class PokemonList extends Component
             pokemons : []
         };
         this.getList();
-        this.props.observer.observe(this.image);
     }
     render(){
         const list = this.state.pokemons.map((pokemon,index)=>
@@ -28,8 +27,7 @@ class PokemonList extends Component
                         <div className="card ">
 
                             <div className="card-image waves-effect waves-block waves-light" onClick={this.loadDescription.bind(this,index)}>
-                                <img className="activator" src={"https://pokeres.bastionbot.org/images/pokemon/" + (index+1 ) + ".png"} 
-                                ref={node => { this.image = node }} img  />
+                                <img className="activator pokemon-img" src={"https://pokeres.bastionbot.org/images/pokemon/" + (index+1 ) + ".png"} />
                             </div>
                             <div className="card-content">
                                 <span className="card-title activator grey-text text-darken-4">{pokemon.name}<i className="material-icons right">more_vert</i></span>
@@ -44,6 +42,7 @@ class PokemonList extends Component
                     </div>
                         ); 
             });
+            
         return (
         <div pokemonlist container-fluid>
             <div className="pokemonlist container">
@@ -95,7 +94,18 @@ class PokemonList extends Component
         //  }
     }
     componentDidMount () {
-        this.props.observer.observe(this.image)
+        if(this.props.observer)
+        {
+            console.log("obsvando");
+	    var lazyImages = [].slice.call(document.querySelectorAll("img.pokemon-img"));
+
+            this.props.observer.observe(lazyImages);
+        }else
+        {
+            console.log("FAIL");
+            console.log(this.props);
+        }
+        
       }
     
 }

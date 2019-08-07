@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import lazyLoadImageCallback, { config } from './lazyLoad'
+import lazyLoadImageCallback, { config } from './Config/LazyLoad'
 //Materialize
 import '../node_modules/materialize-css/dist/css/materialize.min.css'
 import '../node_modules/materialize-css/dist/js/materialize.min.js'
@@ -12,22 +12,17 @@ import Nav from './Components/Nav';
 import PokemonInfo from './Components/PokemonInfo';
 
 class App extends Component {
+  
   constructor()
   {
     super();
-    this.state = {};
-    var observer = new window.IntersectionObserver(lazyLoadImageCallback, config);
-  }
-  lazyLoadImageCallback=(entries, observer)=>{
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        observer.unobserve(entry.target)
-        entry.target.src = entry.target.dataset.src
-      }
-    })
+    this.state = {"":null};
+    
+    
   }
   render()
   {
+    var observer = new window.IntersectionObserver(lazyLoadImageCallback, config);
     const info = ({match})=>
     (
       <div>
@@ -36,12 +31,12 @@ class App extends Component {
       </div>
        
     )
-    
+    console.log(observer);
     return (
       <div className="App container-fluid">
           <Nav/>
           <Router>
-            <Route exact path={'/'} component={function(){<PokemonList observer={this.observer}/>}}/>
+            <Route exact path={'/'} component={()=><PokemonList observer={observer}/>}/>
             <Route path={'/info/:name'} component={info}/>
           </Router>
       </div>
